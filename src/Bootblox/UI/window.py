@@ -2,10 +2,15 @@ import sys
 import os
 import tkinter as tk
 from tkinter import ttk
+
 library_parent_dir = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 sys.path.append(library_parent_dir)
 
 from Library.input import fps
+
+def set_fps(event):
+    value = entry.get()
+    fps(value)  
 
 def create_tab(tab_name, content):
     tab = ttk.Frame(notebook)
@@ -27,8 +32,8 @@ def create_tab(tab_name, content):
         global entry
         entry = tk.Entry(label_input_frame)
         entry.pack(side="right", fill="x", expand=True)
-        value = entry.get()
-        entry.bind("<Return>", fps(value))
+
+        entry.bind("<Return>", set_fps)
 
 window = tk.Tk()
 window.title("Bootblox")
