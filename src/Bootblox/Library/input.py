@@ -36,3 +36,24 @@ def rendering(value):
     with open(ClientSettingsFile, "w") as f:
         json.dump(settings, f, indent=2)
 
+
+def lighting(value):
+    Lighting = {
+        "Voxel": "DFFlagDebugRenderForceTechnologyVoxel",
+        "ShadowMap": "FFlagDebugForceFutureIsBrightPhase2",
+        "Future": "FFlagDebugForceFutureIsBrightPhase3"
+    }
+
+    key = Lighting.get(value)
+    
+    with open(ClientSettingsFile, "r") as f:
+        settings = json.load(f)
+
+    for k, v in settings.items():
+        if (k.startswith("FFlagDebugRenderForceTechnology") or k.startswith("FFlagDebugForceFutureIsBright")) and k != key:
+            settings[k] = False
+    
+    settings[key] = True
+
+    with open(ClientSettingsFile, "w") as f:
+        json.dump(settings, f, indent=2)
