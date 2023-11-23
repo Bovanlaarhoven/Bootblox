@@ -20,31 +20,4 @@ def set_value(key, value):
     with open(ClientSettingsFile, "w") as f:
         json.dump(data, f, indent=4)
 
-
-
-def lighting(value):
-    Lighting = {
-        "Voxel": "DFFlagDebugRenderForceTechnologyVoxel",
-        "ShadowMap": "FFlagDebugForceFutureIsBrightPhase2",
-        "Future": "FFlagDebugForceFutureIsBrightPhase3"
-    }
-
-    key = Lighting.get(value)
-
-    current_value = get_value(key, default=False)
-
-
-    if current_value is not None:
-        for k, v in Lighting.items():
-            if k != value:
-                set_value(v, False)
-
-        set_value(key, True)
-    else:
-        default_value = False 
-        set_value(key, default_value)
-        print(f"Added {key} with default value {default_value} to the settings file.")
-
-
-
-lighting("ShadowMap")       
+    
