@@ -6,13 +6,13 @@ from tkinter import ttk
 library_parent_dir = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 sys.path.append(library_parent_dir)
 
-from Library.input import fps
 from Library.input import rendering
 from Library.input import lighting
+from Library.input import set_value
 
 def set_fps(event):
     value = framerate.get()
-    fps(value)  
+    set_value("DFIntTaskSchedulerTargetFps", value)
 
 def set_rendering(*args):
     value = rendering_mode.get()
