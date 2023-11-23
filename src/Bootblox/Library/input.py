@@ -24,7 +24,8 @@ def lighting(value):
     Lighting = {
         "Voxel": "DFFlagDebugRenderForceTechnologyVoxel",
         "ShadowMap": "FFlagDebugForceFutureIsBrightPhase2",
-        "Future": "FFlagDebugForceFutureIsBrightPhase3"
+        "Future": "FFlagDebugForceFutureIsBrightPhase3",
+        "None": ""
     }
 
     key = Lighting.get(value)
@@ -49,7 +50,8 @@ def rendering(value):
         "Direct3DFL10": "FFlagDebugGraphicsPreferD3D11FL10",
         "OpenGL": "FFlagDebugGraphicsPreferOpenGL",
         "Metal": "FFlagDebugGraphicsPreferMetal",
-        "Vulkan": "FFlagDebugGraphicsPreferVulkan"
+        "Vulkan": "FFlagDebugGraphicsPreferVulkan",
+        "None": ""
     }
 
     key = Rendering.get(value)
