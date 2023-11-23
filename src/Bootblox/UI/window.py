@@ -76,7 +76,7 @@ window = tk.Tk()
 window.title("Bootblox")
 window.geometry("400x300")
 window.resizable(True, True)
-window.attributes('-alpha', 0.5)
+window.attributes('-alpha', 0.7)
 
 notebook = ttk.Notebook(window)
 
