@@ -2,7 +2,7 @@ import os
 
 Roblox = "/Applications/Roblox.app"
 ClientSettings = Roblox + "/Contents/MacOS/ClientSettings"
-ClientSettingsFile = ClientSettings + "/ClientSettings.json"
+ClientSettingsFile = ClientSettings + "/ClientAppSettings.json"
 
 def check():
     if os.path.exists(ClientSettings):
@@ -14,6 +14,3 @@ def check():
         print("Creating File...")
         with open(ClientSettingsFile, "w") as f:
             f.write("{}")
-
-
-check()
