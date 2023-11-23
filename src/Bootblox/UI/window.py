@@ -14,9 +14,6 @@ def set_fps(event):
     value = framerate.get()
     set_value("DFIntTaskSchedulerTargetFps", value)
 
-def validate_input(value, action):
-    return value.isdigit() or value == ""
-
 def set_rendering(*args):
     value = rendering_mode.get()
     rendering(value)
@@ -52,22 +49,21 @@ def create_tab(tab_name, content):
 
         # FrameRate
         global framerate
-        vcmd = (frame1.register(validate_input), "%P", "%d")
-        framerate = tk.Entry(frame1, validate="key", validatecommand=vcmd)
+        framerate = tk.Entry(frame1)
         framerate.pack(side="right", fill="x", expand=True)
         framerate.bind("<Return>", set_fps)
 
         # Rendering
         global rendering_mode
         rendering_mode = tk.StringVar(tab)
-        rendering = tk.OptionMenu(frame2, rendering_mode, "None","Direct3D11", "Direct3DFL10", "OpenGL", "Metal", "Vulkan")
+        rendering = tk.OptionMenu(frame2, rendering_mode, "Direct3D11", "Direct3DFL10", "OpenGL", "Metal", "Vulkan")
         rendering.pack(side="right", fill="x", expand=True)
         rendering_mode.trace("w", set_rendering)
 
         # Lighting
         global lighting_mode
         lighting_mode = tk.StringVar(tab)
-        lighting = tk.OptionMenu(frame3, lighting_mode, "None","Voxel", "ShadowMap", "Future")
+        lighting = tk.OptionMenu(frame3, lighting_mode, "Voxel", "ShadowMap", "Future")
         lighting.pack(side="right", fill="x", expand=True)
         lighting_mode.trace("w", set_lighting)
 
@@ -76,7 +72,7 @@ window = tk.Tk()
 window.title("Bootblox")
 window.geometry("400x300")
 window.resizable(True, True)
-window.attributes('-alpha', 0.7)
+window.attributes('-alpha', 0.6)
 
 notebook = ttk.Notebook(window)
 

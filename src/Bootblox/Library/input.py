@@ -25,13 +25,11 @@ def lighting(value):
         "Voxel": "DFFlagDebugRenderForceTechnologyVoxel",
         "ShadowMap": "FFlagDebugForceFutureIsBrightPhase2",
         "Future": "FFlagDebugForceFutureIsBrightPhase3",
-        "None": ""
     }
 
     key = Lighting.get(value)
 
     current_value = get_value(key, default=False)
-
 
     if current_value is not None:
         for k, v in Lighting.items():
@@ -51,21 +49,21 @@ def rendering(value):
         "OpenGL": "FFlagDebugGraphicsPreferOpenGL",
         "Metal": "FFlagDebugGraphicsPreferMetal",
         "Vulkan": "FFlagDebugGraphicsPreferVulkan",
-        "None": ""
     }
 
     key = Rendering.get(value)
 
-    with open(ClientSettingsFile, "r") as f:
-        settings = json.load(f)
+    current_value = get_value(key, default=False)
 
-    for k, v in settings.items():
-        if k.startswith("FFlagDebugGraphicsPrefer") and k != key:
-            settings[k] = False
+    if current_value is not None:
+        for k, v in Rendering.items():
+            if k != value:
+                set_value(v, False)
 
-    settings[key] = True
-
-    with open(ClientSettingsFile, "w") as f:
-        json.dump(settings, f, indent=2)
+        set_value(key, True)
+    else:
+        default_value = False 
+        set_value(key, default_value)
+        print(f"Added {key} with default value {default_value} to the settings file.")
 
 
