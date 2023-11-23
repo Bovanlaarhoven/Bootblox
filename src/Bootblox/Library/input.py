@@ -12,7 +12,6 @@ def get_value(key, default=None):
     except (FileNotFoundError, json.JSONDecodeError):
         return default
 
-    
 def set_value(key, value):
     with open(ClientSettingsFile, "r") as f:
         data = json.load(f)
@@ -24,7 +23,7 @@ def lighting(value):
     Lighting = {
         "Voxel": "DFFlagDebugRenderForceTechnologyVoxel",
         "ShadowMap": "FFlagDebugForceFutureIsBrightPhase2",
-        "Future": "FFlagDebugForceFutureIsBrightPhase3",
+        "Future": "FFlagDebugForceFutureIsBrightPhase3"
     }
 
     key = Lighting.get(value)
@@ -48,7 +47,7 @@ def rendering(value):
         "Direct3DFL10": "FFlagDebugGraphicsPreferD3D11FL10",
         "OpenGL": "FFlagDebugGraphicsPreferOpenGL",
         "Metal": "FFlagDebugGraphicsPreferMetal",
-        "Vulkan": "FFlagDebugGraphicsPreferVulkan",
+        "Vulkan": "FFlagDebugGraphicsPreferVulkan"
     }
 
     key = Rendering.get(value)
