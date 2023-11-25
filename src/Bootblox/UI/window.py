@@ -9,6 +9,7 @@ sys.path.append(library_parent_dir)
 from Library.input import rendering
 from Library.input import lighting
 from Library.input import set_value
+from Library.check import check
 
 def set_fps(event):
     value = framerate.get()
@@ -69,6 +70,7 @@ def create_tab(tab_name, content):
 
 
 window = tk.Tk()
+check()
 window.title("Bootblox")
 window.geometry("400x300")
 window.resizable(True, True)
