@@ -13,7 +13,13 @@ from Library.check import check
 
 def set_fps(event):
     value = framerate.get()
-    set_value("DFIntTaskSchedulerTargetFps", value)
+
+    try:
+        value = int(value)
+        set_value("DFIntTaskSchedulerTargetFps", value)
+    except ValueError:
+        print("Invalid input. Please enter a valid integer for FPS.")
+
 
 def set_rendering(*args):
     value = rendering_mode.get()
