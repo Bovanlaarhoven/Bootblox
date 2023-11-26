@@ -66,14 +66,6 @@ def check_activity():
     if leave_logs and join_logs:
         if leave_logs > join_logs:
             print("You are not in a game.")
-        else:
-            print("You are in a game.")
-            print(f"Game ID: {get_game_id()}")
-            location_info = get_server_location_info()
-            if location_info:
-                print(f"Server Location: {location_info['city']}, {location_info['region']}, {location_info['country']}")
-            else:
-                print("Failed to retrieve server location information.")
     elif join_logs:
         print("You are in a game.")
         print(f"Game ID: {get_game_id()}")
@@ -82,8 +74,6 @@ def check_activity():
             print(f"Server Location: {location_info['city']}, {location_info['region']}, {location_info['country']}")
         else:
             print("Failed to retrieve server location information.")
-    else:
-        print("Join log not found. Player may not have joined a game yet.")
 
 check_activity()
 
