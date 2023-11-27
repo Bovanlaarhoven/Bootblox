@@ -55,7 +55,6 @@ def get_server_location_info():
     
     return None
 
-
 def check_activity():
     join = "[FLog::Output] ! Joining game"
     leave = "[FLog::Network] Time to disconnect replication data"
@@ -65,23 +64,44 @@ def check_activity():
 
     if leave_logs and join_logs:
         if leave_logs > join_logs:
-            print("You are not in a game.")
+            return "You are not in a game."
         else:
-            print("You are in a game.")
-            print(f"Game ID: {get_game_id()}")
+            game_id = get_game_id()
             location_info = get_server_location_info()
             if location_info:
-                print(f"Server Location: {location_info['city']}, {location_info['region']}, {location_info['country']}")
+                return f"You are in a game. Game ID: {game_id}\nServer Location: {location_info['city']}, {location_info['region']}, {location_info['country']}"
             else:
-                print("Failed to retrieve server location information.")
+                return "Failed to retrieve server location information."
     elif join_logs:
-        print("You are in a game.")
-        print(f"Game ID: {get_game_id()}")
+        game_id = get_game_id()
         location_info = get_server_location_info()
         if location_info:
-            print(f"Server Location: {location_info['city']}, {location_info['region']}, {location_info['country']}")
+            return f"You are in a game. Game ID: {game_id}\nServer Location: {location_info['city']}, {location_info['region']}, {location_info['country']}"
         else:
-            print("Failed to retrieve server location information.")
+            return "Failed to retrieve server location information."
+    else:
+        return "No relevant logs found."
 
-check_activity()
+def send_notification(mode, data=None):
+    title = "Roblox Notification"
+    message = ""
+    
+    if mode == "ServerInfo":
+        if data:
+            message = f"Server Location: {data['city']}, {data['region']}, {data['country']}"
+        else:
+            message = "Failed to retrieve server location information."
+    
+    elif mode == "GameInfo":
+        if data:
+            message = f"You are in a game. Game ID: {data['game_id']}"
+            location_info = get_server_location_info()
+            if location_info:
+                message += f"\nServer Location: {location_info['city']}, {location_info['region']}, {location_info['country']}"
+            else:
+                message += "\nFailed to retrieve server location information."
+        else:
+            message = "You are not in a game."
+
+    os.system(f"osascript -e 'display notification \"{message}\" with title \"{title}\"'")
 

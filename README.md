@@ -1,5 +1,5 @@
 # Bootblox
 
-Erm Fflag editor for Roblox (mac only)
+Fflag editor for Roblox and some more (mac only)
 
 Still in development!
